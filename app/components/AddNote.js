@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import NoteContext from './NoteContext'
 
-export default function AddNote({ handleAdd, desc, setDesc }) {
+export default function AddNote() {
+    const { desc, setDesc, handleAdd } = useContext(NoteContext)
     return (
         <div>
             <form onSubmit={handleAdd}>

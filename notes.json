@@ -24,6 +24,11 @@
       "desc": "another note",
       "important": true,
       "id": 5
+    },
+    {
+      "desc": "another new note",
+      "important": false,
+      "id": 6
     }
   ]
 }

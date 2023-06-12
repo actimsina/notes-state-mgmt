@@ -4,6 +4,7 @@ import noteService from '../services/noteService'
 import NoteFilter from './NoteFilter'
 import NoteList from './NoteList'
 import AddNote from './AddNote'
+import NoteContext from './NoteContext'
 
 export default function NoteApp() {
     const [notes, setNotes] = useState([])
@@ -31,18 +32,23 @@ export default function NoteApp() {
 
     return (
         <div>
-            <NoteFilter
-                filter={filter}
-                setFilter={setFilter}
-            />
+            <NoteContext.Provider
+                value={{
+                    filter,
+                    desc,
+                    notes,
+                    setFilter,
+                    setDesc,
+                    setNotes,
+                    handleAdd
+                }}
+            >
+                <NoteFilter />
 
-            <NoteList notes={notes} filter={filter} />
+                <NoteList />
 
-            <AddNote
-                handleAdd={handleAdd}
-                desc={desc}
-                setDesc={setDesc}
-            />
+                <AddNote />
+            </NoteContext.Provider>
         </div>
     )
 }
