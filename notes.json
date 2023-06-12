@@ -19,6 +19,11 @@
       "desc": "New note",
       "important": false,
       "id": 4
+    },
+    {
+      "desc": "another note",
+      "important": true,
+      "id": 5
     }
   ]
 }
