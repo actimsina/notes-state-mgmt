@@ -1,46 +1,57 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import noteService from '../services/noteService'
 import NoteFilter from './NoteFilter'
 import NoteList from './NoteList'
 import AddNote from './AddNote'
 import NoteContext from './NoteContext'
 
+const noteReducer = (state, action) => {
+    switch (action.type) {
+        case 'setNotes':
+            return {
+                ...state,
+                notes: action.payload
+            }
+        case 'setDesc':
+            return {
+                ...state,
+                desc: action.payload
+            }
+        case 'setFilter':
+            return {
+                ...state,
+                filter: action.payload
+            }
+        default:
+            return state
+    }
+}
+
 export default function NoteApp() {
-    const [notes, setNotes] = useState([])
-    const [desc, setDesc] = useState("")
-    const [filter, setFilter] = useState("")
+    const [state, dispatch] = useReducer(noteReducer, {
+        notes: [],
+        desc: "",
+        filter: ""
+    })
+
 
     useEffect(() => {
         noteService.getAllNotes()
-            .then(data => setNotes(data))
+            .then(data => dispatch({
+                type: 'setNotes',
+                payload: data
+            }))
     }, [])
 
-    const handleAdd = (evt) => {
-        evt.preventDefault()
-        if (desc.trim() !== "") {
-            const newNote = {
-                desc: desc,
-                important: Math.random() < 0.5
-            }
 
-            noteService.createNote(newNote)
-                .then(data => setNotes(notes.concat(data)))
-            setDesc('')
-        }
-    }
 
     return (
         <div>
             <NoteContext.Provider
                 value={{
-                    filter,
-                    desc,
-                    notes,
-                    setFilter,
-                    setDesc,
-                    setNotes,
-                    handleAdd
+                    state,
+                    dispatch
                 }}
             >
                 <NoteFilter />

@@ -16,19 +16,9 @@
       "important": true
     },
     {
-      "desc": "New note",
-      "important": false,
-      "id": 4
-    },
-    {
-      "desc": "another note",
+      "desc": "new note",
       "important": true,
-      "id": 5
-    },
-    {
-      "desc": "another new note",
-      "important": false,
-      "id": 6
+      "id": 4
     }
   ]
 }
