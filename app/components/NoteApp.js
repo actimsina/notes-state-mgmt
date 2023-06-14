@@ -19,8 +19,6 @@ export default function NoteApp() {
             }))
     }, [])
 
-
-
     return (
         <div>
             <NoteFilter />
@@ -31,5 +29,3 @@ export default function NoteApp() {
         </div>
     )
 }
-
-// export default <NoteApp /></Provider>
