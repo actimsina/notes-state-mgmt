@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
-import NoteContext from './NoteContext'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function NoteFilter() {
-    const { state: { filter }, dispatch } = useContext(NoteContext)
+    const dispatch = useDispatch()
+    const filter = useSelector(state => state.filter)
+
     return (
         <div>
             <input type='text'

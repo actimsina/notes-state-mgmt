@@ -1,9 +1,12 @@
-import React, { useContext } from 'react'
-import NoteContext from './NoteContext'
+import React from 'react'
 import noteService from '../services/noteService'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function AddNote() {
-    const { state: { desc, notes }, dispatch } = useContext(NoteContext)
+
+    const dispatch = useDispatch()
+    const desc = useSelector(state => state.desc)
+    const notes = useSelector(state => state.notes)
 
     const handleAdd = (evt) => {
         evt.preventDefault()

@@ -19,6 +19,16 @@
       "desc": "new note",
       "important": true,
       "id": 4
+    },
+    {
+      "desc": "another",
+      "important": false,
+      "id": 5
+    },
+    {
+      "desc": "test note",
+      "important": true,
+      "id": 6
     }
   ]
 }

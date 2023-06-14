@@ -1,40 +1,15 @@
 'use client'
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect } from 'react'
 import noteService from '../services/noteService'
 import NoteFilter from './NoteFilter'
 import NoteList from './NoteList'
 import AddNote from './AddNote'
-import NoteContext from './NoteContext'
+import { useDispatch } from 'react-redux'
 
-const noteReducer = (state, action) => {
-    switch (action.type) {
-        case 'setNotes':
-            return {
-                ...state,
-                notes: action.payload
-            }
-        case 'setDesc':
-            return {
-                ...state,
-                desc: action.payload
-            }
-        case 'setFilter':
-            return {
-                ...state,
-                filter: action.payload
-            }
-        default:
-            return state
-    }
-}
+
 
 export default function NoteApp() {
-    const [state, dispatch] = useReducer(noteReducer, {
-        notes: [],
-        desc: "",
-        filter: ""
-    })
-
+    const dispatch = useDispatch()
 
     useEffect(() => {
         noteService.getAllNotes()
@@ -48,18 +23,13 @@ export default function NoteApp() {
 
     return (
         <div>
-            <NoteContext.Provider
-                value={{
-                    state,
-                    dispatch
-                }}
-            >
-                <NoteFilter />
+            <NoteFilter />
 
-                <NoteList />
+            <NoteList />
 
-                <AddNote />
-            </NoteContext.Provider>
+            <AddNote />
         </div>
     )
 }
+
+// export default <NoteApp /></Provider>

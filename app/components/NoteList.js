@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
-import NoteContext from './NoteContext'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 export default function NoteList() {
-    const { state: { notes, filter } } = useContext(NoteContext)
+    const notes = useSelector(state => state.notes)
+    const filter = useSelector(state => state.filter)
+
     return (
         <div>
             <ul>
